@@ -1,0 +1,11 @@
+#card{
+  width:25vh;
+  height:25vh;
+  background-color:black;
+  color:white;
+  padding-left: 5px;
+}
+
+.img{
+height:60%;
+}

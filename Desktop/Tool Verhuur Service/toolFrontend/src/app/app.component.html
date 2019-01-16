@@ -1,0 +1,24 @@
+<div class="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+          <p>this is the body do you like it?</p>
+      </div>
+      <div class="modal-footer"><button class="btn">Confirm</button></div>
+    </div>
+  </div>
+</div>
+
+<div id="content">
+ <div id="spacer"></div>
+ <img id="header-img" src="../assets/images/bosch-logo.png" alt="Italian Trulli" />
+ <!-- <app-card></app-card> -->
+ <section id="photos" style="color:white">
+   <img  *ngFor="let product of products"
+   title="{{product.name}}"
+   [src]="product.imageurl"
+   onerror="this.style.display='none'"
+   (click)="ClickButton()"
+    />
+</section>
+</div>
