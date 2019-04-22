@@ -1,0 +1,47 @@
+<!-- Modal  -->
+<div class="modal fade" id="demoModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">{{gamee?.gameName}}</h2>
+        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <img style=" display: block;margin-left: auto; margin-right: auto;" [src]="gamee?.gameImage"/>
+        <p>Beschrijving:<br/>
+          {{(gamee?.gameDetails) ? gamee?.gameDetails : 'no company yet'}}
+        </p>
+
+        <p >Company:<br/>{{(gamee?.gameCompany) ? gamee?.gameCompany.companyName : 'no company yet'}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- website content -->
+<div id="content">
+<h3>Gegistreerde spellen</h3>
+
+Zie hieronder alle games die bij ons geregistreerd staan, u kunt hierop klikken om informatie in te zien.
+
+  <p></p>
+  <section id="photos" style="color:white">
+    <img  *ngFor="let game of games | paginate: { id: 1, itemsPerPage: 25, currentPage: d }"
+    class="image"
+    title="{{game.gameName}}"
+    [src]="game.gameImage"
+    onerror="this.style.display='none'"
+    data-toggle="modal"
+    data-target="#demoModal"
+    (click)="photoclicked(game)"/>
+  </section>
+  <div class="pagination-style">
+  <pagination-controls class="styling" style="color:white;" [id]='1' (pageChange)="d =$event"></pagination-controls>
+  </div>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

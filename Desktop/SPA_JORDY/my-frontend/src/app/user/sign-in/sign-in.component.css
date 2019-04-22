@@ -1,0 +1,57 @@
+.input{
+  border:0px;
+  background-color:inherit;
+  border:1px solid white;
+  border-radius: 25px;
+  height:2em;
+  background-color: white;
+  text-align: center;
+  margin:5px;
+  width:100%;
+  margin-top:3%;
+}
+.input:focus{
+       outline: none;
+   }
+   #top{
+     margin-top:0%;
+   }
+
+   .submit{
+     background:#39CCCC;
+     
+     border:1px solid #001f3f;
+     width:100px;
+     height:2em;
+     color:#001f3f;
+     border-radius: 25px;
+     margin-top:1%;
+   }
+   .submit:hover{
+     background:#001f3f;
+     border: #39CCCC 1px solid;
+     color:#39CCCC;
+     cursor: pointer;
+   }
+   .submit:disabled,
+.submit[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+   .submit:focus{
+          outline: none;
+      }
+   .center{
+     margin-left:5%;
+     margin-right:5%;
+     text-align: center;
+   }
+
+.error{
+  margin-top:5px;
+  border-radius:25px;
+  color:red;
+  font-weight:bold;
+  background-color:white;
+}

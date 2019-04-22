@@ -1,0 +1,72 @@
+<div class="modal fade" id="demoModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">{{comp?.companyName}}</h2>
+        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <p><b>Leeftijd van het bedrijf:</b><br/>{{comp?.companyAge}}
+        </p>
+
+        <p ><b>Developers:</b><br/>
+          <a *ngFor="let a of comp?.companyDeveloper">
+            {{a.name}}<br/>
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<h3 style="text-align:center;">Company Panel</h3>
+<form #insertCompanyForm ="ngForm" (ngSubmit)="onSubmit(insertCompanyForm)" style="text-align: center;">
+  <input type="text" class="input"  #companyName="ngModel"
+  [(ngModel)]="companyService.selectedCompany.companyName"
+  name="companyName" placeholder="Bedrijfsnaam" required>
+  <input type="number" class="input"  #age="ngModel" [(ngModel)]="companyService.selectedCompany.companyAge"
+  name="companyAge" placeholder="De leeftijd van het bedrijf" required ><br/><br/>
+  Selecteer de developers die in dit bedrijf werken
+  <table class="table table table-hover table-light" >
+    <tr>
+  <th scope="col">Name</th>
+  <th scope="col"> Age</th>
+  <th scope="col"> Select</th>
+    </tr>
+    <tr id="secret" *ngFor="let emp of developerlist | paginate: { id: 1, itemsPerPage: 5, currentPage: d }">
+      <td>{{emp.name}}</td>
+      <td>{{emp.age}}</td>
+      <td><input type="checkbox" id="scales" name="scales" [value]="emp._id" (click)="addOrRemove(emp._id)"></td>
+    </tr>
+  </table>
+  <div class="pagination-style">
+  <pagination-controls style="color:white;" [id]='1' (pageChange)="d =$event"></pagination-controls>
+  </div>
+  <input  type="submit"style="width:150px;" class="submit" value="VOER IN">
+
+<br/>
+Bedrijven die al in ons systeem staan:
+<table class="table table table-hover table-light" >
+  <tr>
+<th scope="col">Name</th>
+<th scope="col"> Delete</th>
+<th scope="col"> Edit</th>
+<th scope="col"> Details</th>
+  </tr>
+  <tr *ngFor="let comp of companylist | paginate: { id: 2, itemsPerPage: 5, currentPage: p }">
+    <td>{{comp.companyName}}</td>
+    <td *ngIf="comp._id"><input type="button" class="submit" (click)="delete(comp._id)" value="VERWIJDER"></td>
+    <td *ngIf="!comp._id">Niet mogelijk</td>
+    <td *ngIf="comp._id"><input type="button" class="submit" (click)="edit(comp,insertCompanyForm)" value="PAS AAN"></td>
+    <td *ngIf="!comp._id">Niet mogelijk</td>
+    <td *ngIf="comp._id"><input type="button" class="submit" data-toggle="modal"
+    data-target="#demoModal" (click)="rowclicked(comp)" value="DETAILS"></td>
+    <td *ngIf="!comp._id">Niet mogelijk</td>
+  </tr>
+</table>
+<div class="pagination-style">
+<pagination-controls style="background-color:white;" [id]='2' (pageChange)="p =$event"></pagination-controls>
+</div>
+
+</form>

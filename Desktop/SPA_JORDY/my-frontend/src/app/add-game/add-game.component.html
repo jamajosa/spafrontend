@@ -1,0 +1,50 @@
+
+<h3 style="text-align:center;">Game Panel</h3>
+<form #insertGameForm ="ngForm" (ngSubmit)="onSubmit(insertGameForm)" style="text-align: center;">
+  <input type="text" class="input"  #gameName="ngModel"
+  [(ngModel)]="gameService.selectedGame.gameName"
+  name="gameName" placeholder="Naam van het spel" required>
+  <input type="text" class="input"  #gameImage="ngModel"
+  [(ngModel)]="gameService.selectedGame.gameImage"
+  name="gameImage" placeholder="Plaatje van het spel" required>
+  <textarea type="text" class="input" rows="4" cols="50" #gameDetails="ngModel"
+  [(ngModel)]="gameService.selectedGame.gameDetails"
+  name="gameDetails" placeholder="Details" required></textarea>
+  De maker van de game:
+  <select
+  #gameCompany="ngModel"
+  name="gameCompany"
+  [(ngModel)]="gameService.selectedGame.gameCompany"
+  >
+    <option *ngFor="let c of complist"
+    class="input"
+    [value]="c._id">{{c.companyName}}</option>
+  </select>
+  <input  type="submit"style="width:150px;" class="submit" value="VOER IN">
+
+<br/>
+games die al in ons systeem staan:
+<table class="table table table-hover table-light" >
+  <tr>
+<th scope="col">Image</th>
+<th scope="col"> Age</th>
+<th scope="col"> Delete</th>
+<th scope="col"> Edit</th>
+  </tr>
+  <tr *ngFor="let game of gamelist | paginate: { id: 1, itemsPerPage: 5, currentPage: d }">
+    <td><img
+      style="width:50px;"
+    class="image"
+    title="{{game.gameName}}"
+    [src]="game.gameImage"/></td>
+    <td>{{game.gameName}}</td>
+    <td *ngIf="game._id"><input type="button" class="submit" (click)="delete(game._id)" value="VERWIJDER"></td>
+    <td *ngIf="!game._id">Niet mogelijk</td>
+    <td *ngIf="game._id"><input type="button" class="submit" (click)="edit(game,insertGameForm)" value="PAS AAN"></td>
+    <td *ngIf="!game._id">Niet mogelijk</td>
+  </tr>
+</table>
+<div class="pagination-style">
+<pagination-controls class="styling" style="color:white;" [id]='1' (pageChange)="d =$event"></pagination-controls>
+</div>
+</form>

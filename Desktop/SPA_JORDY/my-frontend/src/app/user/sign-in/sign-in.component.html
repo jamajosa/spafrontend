@@ -1,0 +1,19 @@
+<div class="center">
+  <h3>Inloggen</h3>
+hieronder kunt u inloggen in het platform, na inloggen kunt u gebruik maken van alle features. Heeft u nog geen account? registreer dan even dit is gratis en vrijblijvend! 
+<form #signInForm="ngForm" (ngSubmit)="signInForm.valid && onSubmit(signInForm)">
+  <input type="email" class="input"  #email="ngModel" [(ngModel)]="model.email"
+  name="email" placeholder="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+  <input type="password" class="input" name="password" #password="ngModel" [(ngModel)]="model.password" placeholder="wachtwoord" required minlength="4">
+  <input type="submit" class="submit" value="Log In">
+  <div *ngIf ="signInForm.submitted && email.errors?.pattern">
+    invalid email
+    </div>
+    <div *ngIf ="signInForm.submitted && password.errors?.minlength">
+      wachtwoord moet minimaal 4 karakters zijn
+      </div>
+</form>
+<div class="alert" *ngIf="serverErrorMessage">
+  {{serverErrorMessage}}
+  </div>
+  </div>

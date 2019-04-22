@@ -1,0 +1,17 @@
+<!-- <img style="height:100vh;width:100%;" src="assets/images/background.png"> -->
+  <div id="centerspace">
+    <img style="width:100%;" src="assets/images/header.jpg">
+    <form *ngIf="!boolean; else templateName" class="form" action="/action_page.php">
+      <input class="submit" type="submit"  routerLink="/signin" value="LOGIN">
+      <input class="submit" type="submit"  routerLink="/signup" value="REGISTER">
+</form>
+<ng-template #templateName>
+  <input class="submit2" type="submit"  routerLink="/view" value="HOME">
+    <input class="submit2" type="submit"  routerLink="/addDeveloper" value="DEVELOPERPANEL">
+    <input class="submit2" type="submit"  routerLink="/addGame" value="GAMEPANEL">
+    <input class="submit2" type="submit"  routerLink="/addCompany" value="BEDRIJFSPANEL">
+    <input class="submit" type="submit" style="float:right;" (click)="deleteToken()" value="LOGOUT">
+</ng-template>
+<hr>
+    <router-outlet></router-outlet>
+  </div>

@@ -1,0 +1,34 @@
+<div class="center">
+<h2>Register</h2>
+<p>hieronder kunt u registreren voor het platform, na deze registratie kunt u gebruik maken van alle features.
+<form #signUpForm ="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
+  <input type="text" class="input" id="top" #fullName="ngModel" [(ngModel)]="userService.selectedUser.fullName" name="fullName" placeholder="gebruikersnaam"
+  required><br/>
+  <input type="email" email class="input"  #email="ngModel" [(ngModel)]="userService.selectedUser.email"
+  name="email" placeholder="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" ><br/>
+  <input type="password" class="input" #password="ngModel" [(ngModel)]="userService.selectedUser.password" name="password" placeholder="wachtwoord" minlength="4" required><br/>
+  <input type="submit" [disabled]="signUpForm.form.invalid" class="submit" value="REGISTER">
+
+  <!-- <div *ngIf="signUpForm.submitted && !fullName.valid || signUpForm.submitted && !email.valid || signUpForm.submitted && !password.valid">
+    <label class="validation-message">Er missen nog gegevens, vul de velden in om door te gaan</label>
+  </div> -->
+  <div *ngIf="!succes">
+  <div class="error" *ngIf="fullName.errors?.required || email.errors?.required || password.errors?.required">
+    Er missen nog gegevens!
+  </div>
+  <div class="error" *ngIf="email.errors?.pattern">
+    email adres, is niet goed ingevuld
+  </div>
+  <div class="error" *ngIf="password.errors?.minlength">
+    Wachtwoord moet minimaal 4 karakters zijn
+  </div>
+</div>
+
+  <div class="succesDiv" *ngIf="succes">
+    Registratie voltooid! Redirecting naar Loginpagina
+  </div>
+  <div class="alert" *ngIf="errorMsg">
+    {{errorMsg}}
+  </div>
+</form>
+</div>
